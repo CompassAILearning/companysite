@@ -1,34 +1,62 @@
 # CompassAI company site
 
-Landing page for **CourseCadence**, a product of CompassAI. Built from page 1 of the
-`CompassAI_concept_update_11_04_2026.pdf` concept.
+Marketing site for **CourseCadence**, a product of CompassAI. Built with [Astro](https://astro.build)
+(static output) and edited through [Sveltia CMS](https://sveltiacms.app) at `/admin`.
 
-Plain HTML/CSS/JS with no build step. Open `index.html` in a browser, or serve the folder:
+## Editing content (no code needed)
+
+1. Go to `https://<site>/admin/`.
+2. Click **Sign In Using Access Token** and paste a GitHub token (see below).
+3. Pick a page under **Pages**, edit the fields and click **Save**.
+4. The save commits to `main`. Vercel rebuilds and the change goes live in about a minute.
+
+Every change is a git commit, so any edit can be undone by reverting that commit on GitHub.
+
+### Getting an access token
+
+You need **write access** to `CompassAILearning/companysite`. Then create a
+[fine-grained personal access token](https://github.com/settings/personal-access-tokens/new):
+
+- **Resource owner:** CompassAILearning
+- **Repository access:** Only select repositories → `companysite`
+- **Repository permissions:** Contents → **Read and write**
+
+The token is stored in your browser only. The login dialog also links to a pre-filled token page.
+
+## Development
 
 ```sh
-python -m http.server 8000   # then visit http://localhost:8000
+npm install
+npm run dev        # http://localhost:4321  (admin: /admin/index.html)
+npm run build      # outputs to dist/
 ```
+
+In Chrome or Edge you can also edit local files with the CMS: open `/admin/index.html` on the dev server
+and choose **Work with Local Repository**.
 
 ## Structure
 
 ```
-index.html            home page (hero, features, steps, sign-up)
-about.html            mission, values, student quotes, team
-getting-started.html  detailed setup steps + FAQ
-download.html         platform cards + system requirements
-css/styles.css        all styles; brand colors are CSS variables at the top
-js/main.js            mobile nav toggle + sign-up form validation
-assets/img/           logo (header + footer variants) and hero photo
+src/content/*.json      all page text: what the CMS edits
+src/pages/*.astro       page templates (home, about, getting-started, download)
+src/layouts/Base.astro  shared header + footer
+src/components/         icons, page banner, call-to-action band
+public/admin/           CMS page + config.yml (which fields editors can change)
+public/css, public/js   styles and the nav/form script
+public/assets/img       images (CMS uploads land here too)
+vercel.json             build settings for Vercel
 ```
+
+To make a new piece of text editable: add it to the JSON file, render it in the `.astro` template
+and add a matching field in `public/admin/config.yml`.
 
 ## Still to do
 
-- Sign-up form validates in the browser only. Wire it to a real endpoint in `js/main.js`.
-- Hero play button is a placeholder. Swap the image for a `<video>` when the product video is ready.
-- About, Getting Started and Download hold **filler copy** (marked with `FILLER` comments).
-  Team names and photos, app store links, pricing, calendar integrations and system
-  requirements are placeholders. Confirm them before launch.
-- The header and footer are copied into every page. If you change one, change all four.
-- Footer legal links and Student Community still point to `#`.
-- Logo and hero image are rasters taken from the PDF. Replace them with the original SVG logo
-  and a high-res photo when available.
+- Sign-up form validates in the browser only. Wire it to a real endpoint in `public/js/main.js`.
+- Hero play button is a placeholder (no video yet).
+- About, Getting Started and Download hold **filler copy**. Team names and photos, app store links,
+  pricing, calendar integrations and system requirements are placeholders. Confirm them before launch.
+- Footer legal links and Student Community point to `#`.
+- Logo and hero image are rasters taken from the concept PDF. Replace them with the original SVG
+  logo and a high-res photo.
+- Optional: "Sign in with GitHub" button instead of tokens (see `base_url` in `public/admin/config.yml`).

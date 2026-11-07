@@ -364,3 +364,5 @@ h1, h2, h3, h4 { margin: 0; line-height: 1.15; }
 }
 .quote-grid { grid-template-columns: repeat(2, 1fr); max-width: 920px; margin: 0 auto; }
 @media (max-width: 960px) { .quote-grid { grid-template-columns: 1fr; } }
+.btn-disabled { opacity: .55; cursor: not-allowed; pointer-events: none; }
+img.avatar { object-fit: cover; }

@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import page from '../content/getting-started.json';
+const { hero, steps, needs, faq, cta } = page;
+---
+<Base title={page.seo.title} description={page.seo.description} current="getting-started">
+  <PageHero hero={hero} />
+
+  <section class="section section-alt">
+    <div class="container">
+      <ol class="detail-steps">
+        {steps.map((step) => (
+          <li class="detail-step">
+            <Icon name={step.icon} />
+            <div>
+              <h3><span>{step.label}</span> {step.title}</h3>
+              <p>{step.body}</p>
+              {step.bullets?.length > 0 && (
+                <ul>{step.bullets.map((b) => <li>{b}</li>)}</ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <h2>{needs.heading}</h2>
+        <ul class="checklist checklist-dark">
+          {needs.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="media-card">
+        <img src={needs.image} alt={needs.imageAlt} width="724" height="483">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>{faq.heading}</h2>
+      </div>
+      <div class="faq">
+        {faq.items.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand cta={cta} alt />
+</Base>
