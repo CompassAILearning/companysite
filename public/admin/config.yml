@@ -1,5 +1,9 @@
 # Sveltia CMS configuration: https://sveltiacms.app/en/docs
-# Every save commits to `main`; Vercel then rebuilds and publishes the site.
+#
+# Review workflow: saving creates a draft (a pull request with its own Vercel preview link).
+# Changes move Draft -> In Review -> Ready, and Publish merges them into `main`,
+# which Vercel then deploys to the live site.
+publish_mode: editorial_workflow
 
 backend:
   name: github

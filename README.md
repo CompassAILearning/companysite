@@ -5,23 +5,29 @@ Marketing site for **CourseCadence**, a product of CompassAI. Built with [Astro]
 
 ## Editing content (no code needed)
 
-1. Go to `https://companysite-zeta.vercel.app/admin/`.
-2. Click **Sign In Using Access Token** and paste a GitHub token (see below).
-3. Pick a page under **Pages**, edit the fields and click **Save**.
-4. The save commits to `main`. Vercel rebuilds and the change goes live in about a minute.
+1. Go to `https://companysite-zeta.vercel.app/admin/` and sign in (see below).
+2. Pick a page under **Pages**. The right-hand pane shows the page as it will look and updates as
+   you type. Click any text in the preview to jump to its field.
+3. Click **Save**. Your change becomes a **draft**, not yet live.
+4. Move it to **In Review** to ask a colleague to check it. Each draft gets its own Vercel preview
+   link (shown on the GitHub pull request the CMS opens) so reviewers can see the real page.
+5. A reviewer moves it to **Ready** (this approves it) and clicks **Publish**. The change is merged
+   into `main`, and Vercel puts it live in about a minute.
 
-Every change is a git commit, so any edit can be undone by reverting that commit on GitHub.
+Drafts and their status are on the **Workflow** page in the CMS. Every published change is a git
+commit, so it can be undone by reverting that commit on GitHub.
 
-### Getting an access token
+### Signing in
 
-You need **write access** to `CompassAILearning/companysite`. Then create a
-[fine-grained personal access token](https://github.com/settings/personal-access-tokens/new):
+Editors need a free GitHub account with **write access** to `CompassAILearning/companysite`
+(Repo → Settings → Collaborators).
 
-- **Resource owner:** CompassAILearning
-- **Repository access:** Only select repositories → `companysite`
-- **Repository permissions:** Contents → **Read and write**
-
-The token is stored in your browser only. The login dialog also links to a pre-filled token page.
+- **Sign In with GitHub:** one click, once the login service is set up (`base_url` in
+  `public/admin/config.yml`).
+- **Sign In Using Access Token** (fallback): create a
+  [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) with
+  Resource owner *CompassAILearning*, Repository access *only `companysite`*, and permissions
+  **Contents: Read and write** + **Pull requests: Read and write**. The token stays in your browser.
 
 ## Development
 
@@ -41,14 +47,15 @@ src/content/*.json      all page text: what the CMS edits
 src/pages/*.astro       page templates (home, about, getting-started, download)
 src/layouts/Base.astro  shared header + footer
 src/components/         icons, page banner, call-to-action band
-public/admin/           CMS page + config.yml (which fields editors can change)
+public/admin/           CMS page, config.yml (editable fields) and preview.js (live preview templates)
 public/css, public/js   styles and the nav/form script
 public/assets/img       images (CMS uploads land here too)
 vercel.json             build settings for Vercel
 ```
 
-To make a new piece of text editable: add it to the JSON file, render it in the `.astro` template
-and add a matching field in `public/admin/config.yml`.
+To make a new piece of text editable: add it to the JSON file, render it in the `.astro` template,
+add a matching field in `public/admin/config.yml` and show it in `public/admin/preview.js`.
+Changes to page markup in `src/pages` should be mirrored in `preview.js` so the preview stays accurate.
 
 ## Still to do
 
@@ -59,4 +66,3 @@ and add a matching field in `public/admin/config.yml`.
 - Footer legal links and Student Community point to `#`.
 - Logo and hero image are rasters taken from the concept PDF. Replace them with the original SVG
   logo and a high-res photo.
-- Optional: "Sign in with GitHub" button instead of tokens (see `base_url` in `public/admin/config.yml`).
