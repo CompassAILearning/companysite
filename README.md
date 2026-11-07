@@ -5,7 +5,7 @@ Marketing site for **CourseCadence**, a product of CompassAI. Built with [Astro]
 
 ## Editing content (no code needed)
 
-1. Go to `https://<site>/admin/`.
+1. Go to `https://companysite-zeta.vercel.app/admin/`.
 2. Click **Sign In Using Access Token** and paste a GitHub token (see below).
 3. Pick a page under **Pages**, edit the fields and click **Save**.
 4. The save commits to `main`. Vercel rebuilds and the change goes live in about a minute.

@@ -9,8 +9,8 @@ backend:
   # (https://github.com/sveltia/sveltia-cms-auth) and set its URL here:
   # base_url: https://compassai-cms-auth.<your-account>.workers.dev
 
-# Link to the live site from the admin header. Set once the Vercel URL / domain is final.
-# site_url: https://<your-domain>
+# Link to the live site from the admin header. Update if a custom domain is added.
+site_url: https://companysite-zeta.vercel.app
 
 media_folder: public/assets/img
 public_folder: /assets/img
