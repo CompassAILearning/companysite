@@ -1,0 +1,28 @@
+{
+  "logo": "/assets/img/logo.png",
+  "logoAlt": "CompassAI",
+  "layout": "split",
+  "links": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "About",
+      "url": "/about"
+    },
+    {
+      "label": "Getting Started",
+      "url": "/getting-started"
+    },
+    {
+      "label": "Download",
+      "url": "/download"
+    }
+  ],
+  "cta": {
+    "show": false,
+    "label": "Start free trial",
+    "url": "/#signup"
+  }
+}
