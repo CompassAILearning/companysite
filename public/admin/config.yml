@@ -13,9 +13,12 @@ backend:
   name: github
   repo: CompassAILearning/companysite
   branch: main
-  # To add a "Sign in with GitHub" button, deploy Sveltia CMS Authenticator
-  # (https://github.com/sveltia/sveltia-cms-auth) and set its URL here:
-  # base_url: https://compassai-cms-auth.<your-account>.workers.dev
+  # Only token sign-in for now. Without base_url, "Sign In with GitHub" falls back to Netlify's
+  # login service, which doesn't work on Vercel (Netlify "Not Found" page).
+  # To enable it: deploy Sveltia CMS Authenticator (https://github.com/sveltia/sveltia-cms-auth),
+  # set base_url to its URL, and change auth_methods to [oauth, token].
+  auth_methods: [token]
+  # base_url: https://sveltia-cms-auth.<your-account>.workers.dev
 
 # Link to the live site from the admin header. Update if a custom domain is added.
 site_url: https://companysite-zeta.vercel.app
