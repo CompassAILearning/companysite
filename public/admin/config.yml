@@ -1,9 +1,13 @@
 # Sveltia CMS configuration: https://sveltiacms.app/en/docs
 #
-# Review workflow: saving creates a draft (a pull request with its own Vercel preview link).
-# Changes move Draft -> In Review -> Ready, and Publish merges them into `main`,
-# which Vercel then deploys to the live site.
-publish_mode: editorial_workflow
+# Review is optional:
+# - Save keeps a change as a draft (a pull request with its own Vercel preview link) that can go
+#   Draft -> In Review -> Ready -> Publish.
+# - "Save and Publish" (in the Save button's menu) skips review and puts a change live straight away.
+# Published changes can be undone from the CMS "History" page (public/admin/history.js).
+publish_mode:
+  type: editorial_workflow
+  direct_publish: true
 
 backend:
   name: github
