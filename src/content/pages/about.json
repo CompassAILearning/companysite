@@ -1,0 +1,101 @@
+{
+  "title": "About",
+  "seo": {
+    "title": "About CompassAI — CourseCadence",
+    "description": "Learn about CompassAI, the team behind CourseCadence, and our mission to help students manage college life."
+  },
+  "sections": [
+    {
+      "type": "pageBanner",
+      "eyebrow": "About CompassAI",
+      "headline": "We're building the college companion we wish we'd had",
+      "lead": "CompassAI creates tools that help students handle the jump to college. CourseCadence, our first product, turns a stack of syllabi into one personalized plan so students can focus on learning instead of logistics."
+    },
+    {
+      "type": "textImage",
+      "background": "white",
+      "heading": "Our mission",
+      "body": "College asks students to manage more at once than ever before: several courses, each with its own syllabus, deadlines and expectations, along with jobs, sports, family and a social life.\n\nWe believe no student should have to work all of that out alone. Our mission is to give every student a calm, clear view of what's next and a plan that adapts when life happens.\n\nWe design with students, not just for them. Every feature starts from real conversations about what makes college hard.",
+      "image": "/assets/img/hero.png",
+      "imageAlt": "Students working in a college classroom",
+      "imageSide": "right"
+    },
+    {
+      "type": "featureCards",
+      "style": "plain",
+      "background": "gray",
+      "heading": "What we believe",
+      "intro": "The principles behind every decision we make about CourseCadence.",
+      "cards": [
+        {
+          "title": "Students first",
+          "body": "We build for the student's long-term success, not for screen time. A good day in CourseCadence is one where you open it, know what to do and get back to your life.",
+          "color": "blue"
+        },
+        {
+          "title": "Flexible, not rigid",
+          "body": "Plans should bend when life happens. Missed a session? CourseCadence reworks the rest of your week instead of making you feel behind.",
+          "color": "green"
+        },
+        {
+          "title": "Privacy by default",
+          "body": "Your schedule and coursework belong to you. We collect only what we need to build your plan and never sell student data.",
+          "color": "amber"
+        }
+      ]
+    },
+    {
+      "type": "quotes",
+      "anchor": "stories",
+      "background": "white",
+      "heading": "What students are saying",
+      "intro": "Early feedback from students using CourseCadence.",
+      "quotes": [
+        {
+          "quote": "As a first-year, I had no idea how much time each class really needed. CourseCadence took the guesswork out of it, and my grades showed it.",
+          "attribution": "Undeclared, Freshman"
+        },
+        {
+          "quote": "The best part is that it adjusts when life happens. I missed two sessions during midterms, and instead of making me feel behind, it just reworked the rest of my week.",
+          "attribution": "Biology, Junior"
+        }
+      ]
+    },
+    {
+      "type": "team",
+      "background": "gray",
+      "heading": "Meet the team",
+      "intro": "Educators, engineers and recent grads who remember how hard the transition can be.",
+      "members": [
+        {
+          "name": "Team Member",
+          "role": "Co-Founder & CEO",
+          "photo": ""
+        },
+        {
+          "name": "Team Member",
+          "role": "Co-Founder & CTO",
+          "photo": ""
+        },
+        {
+          "name": "Team Member",
+          "role": "Head of Learning Science",
+          "photo": ""
+        },
+        {
+          "name": "Team Member",
+          "role": "Student Success Lead",
+          "photo": ""
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "background": "white",
+      "heading": "Ready to take the chaos out of college?",
+      "text": "Try CourseCadence free for 30 days. No credit card required.",
+      "buttonLabel": "Start Free 30-Day Trial",
+      "buttonUrl": "/#signup"
+    }
+  ]
+}

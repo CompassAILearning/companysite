@@ -1,0 +1,78 @@
+{
+  "title": "Home",
+  "seo": {
+    "title": "CourseCadence by CompassAI — Easily manage college life",
+    "description": "CourseCadence builds personalized study plans from your syllabi so you never miss a deadline. Start your 30-day free trial."
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Easily manage college life—every course deadline, assignment, and exam",
+      "lead": "Ease the transition college demands. With CourseCadence personalized study plans, you'll eliminate the stress of managing and organizing academic coursework.",
+      "ctaLabel": "Enjoy a 30-day free trial of CourseCadence",
+      "ctaUrl": "#signup",
+      "image": "/assets/img/hero.png",
+      "imageAlt": "A smiling student raising her hand in a college classroom",
+      "showVideoControls": true
+    },
+    {
+      "type": "featureCards",
+      "anchor": "features",
+      "style": "panel",
+      "heading": "Eliminate the stress of managing coursework",
+      "cards": [
+        {
+          "title": "Track, Organize, and Keep Up",
+          "body": "From dedicated study blocks to push notifications that remind you of coursework and commitments, CourseCadence eliminates the need to juggle multiple syllabi and course calendars. Just open the app to know exactly what you need to do to keep up and stay on track.",
+          "color": "blue"
+        },
+        {
+          "title": "Say Hello to Your Personalized College Companion",
+          "body": "Think of CourseCadence as your academic assistant. Push notifications remind you of study sessions and deadlines. It checks in. It even cheers you on. It ensures you never feel like you're navigating college on your own.",
+          "color": "green"
+        },
+        {
+          "title": "Better Manage Responsibilities",
+          "body": "Juggling multiple courses, jobs, and personal obligations is a challenge. You can personalize CourseCadence's time and study management plan to accommodate all of it. You'll better regulate college life and enforce boundaries that promote manageable schedules and workloads for optimal academic outcomes.",
+          "color": "amber"
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "anchor": "how-it-works",
+      "heading": "CourseCadence Removes the College Chaos",
+      "items": [
+        {
+          "label": "Step 1:",
+          "text": "Upload your class syllabus",
+          "icon": "upload"
+        },
+        {
+          "label": "Step 2:",
+          "text": "Answer questions about your schedule and learning style",
+          "icon": "questions"
+        },
+        {
+          "label": "Step 3:",
+          "text": "Get your personalized study plan",
+          "icon": "plan"
+        }
+      ]
+    },
+    {
+      "type": "signup",
+      "anchor": "signup",
+      "heading": "Sign up for your 30-Day Free Trial",
+      "checklist": [
+        "Study time, reading blocks, exam prep—all scheduled based on your learning preferences",
+        "Never miss a deadline",
+        "Eliminate the chaos of juggling multiple syllabi and course calendars",
+        "Input non-course obligations like jobs and sports to ensure a manageable schedule that optimizes academic outcomes"
+      ],
+      "tagline": "Never again feel like you're navigating college on your own.",
+      "buttonLabel": "Start Free 30-Day Trial",
+      "successMessage": "Thanks! Check your inbox to get started with CourseCadence."
+    }
+  ]
+}

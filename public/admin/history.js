@@ -10,13 +10,15 @@
 (() => {
   const REPO = 'CompassAILearning/companysite';
   const BRANCH = 'main';
-  const PAGES = [
-    { file: 'src/content/home.json', label: 'Home' },
-    { file: 'src/content/about.json', label: 'About' },
-    { file: 'src/content/getting-started.json', label: 'Getting Started' },
-    { file: 'src/content/download.json', label: 'Download' },
-    { file: 'src/content/site.json', label: 'Footer' },
+  const PAGES_DIR = 'src/content/pages';
+  // Site-wide settings, listed after the pages.
+  const SETTINGS = [
+    { file: 'src/content/settings/theme.json', label: 'Theme' },
+    { file: 'src/content/settings/header.json', label: 'Header' },
+    { file: 'src/content/settings/footer.json', label: 'Footer' },
   ];
+  const pageLabel = (name) =>
+    name === 'index' ? 'Home' : name.replace(/[-_]+/g, ' ').replace(/\w/g, (c) => c.toUpperCase());
   const PER_PAGE = 15;
 
   const { useState, useEffect, useCallback } = CMS.React;
@@ -203,13 +205,33 @@
   };
 
   const HistoryPage = () => {
+    const [pages, setPages] = useState(null);
     const [pageIndex, setPageIndex] = useState(0);
     const [commits, setCommits] = useState(null);
     const [error, setError] = useState('');
     const [notice, setNotice] = useState('');
-    const page = PAGES[pageIndex];
+
+    // Discover pages (editors can create new ones), then append the settings files.
+    useEffect(() => {
+      (async () => {
+        try {
+          const files = (await gh(`/contents/${PAGES_DIR}?ref=${BRANCH}`)) || [];
+          const found = files
+            .filter((f) => f.type === 'file' && f.name.endsWith('.json'))
+            .map((f) => ({ file: f.path, label: pageLabel(f.name.replace(/\.json$/, '')), name: f.name }))
+            .sort((a, b) => (a.name === 'index.json' ? -1 : b.name === 'index.json' ? 1 : a.label.localeCompare(b.label)));
+          setPages([...found, ...SETTINGS]);
+        } catch (e) {
+          setPages(SETTINGS);
+          setError(e.message === 'NO_TOKEN' ? 'Could not read your sign-in. Sign out of the CMS and sign back in, then reopen History.' : e.message);
+        }
+      })();
+    }, []);
+
+    const page = pages?.[pageIndex];
 
     const load = useCallback(async () => {
+      if (!page) return;
       setCommits(null);
       setError('');
       try {
@@ -222,9 +244,11 @@
             : e.message,
         );
       }
-    }, [page.file]);
+    }, [page?.file]);
 
     useEffect(() => { load(); }, [load]);
+
+    if (!pages) return html`<div style=${S.page}><p style=${S.meta}>Loading…</p></div>`;
 
     return html`
       <div style=${S.page}>
@@ -234,7 +258,7 @@
           and <b>Restore this version</b> to put a page back the way it was. A restore goes live straight away.
         </p>
         <div style=${S.tabs}>
-          ${PAGES.map((p, i) => html`
+          ${pages.map((p, i) => html`
             <button key=${p.file} type="button" style=${S.tab(i === pageIndex)} onClick=${() => { setNotice(''); setPageIndex(i); }}>${p.label}</button>`)}
         </div>
         ${notice && html`<div style=${S.notice('ok')}>${notice}</div>`}

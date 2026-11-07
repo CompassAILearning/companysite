@@ -1,0 +1,28 @@
+---
+// Builds one page per file in src/content/pages. index.json is the home page (/);
+// any other file, e.g. pricing.json, becomes /pricing. Editors create these in the CMS.
+import Base from '../layouts/Base.astro';
+import { renderSections } from '../render/sections.mjs';
+
+export function getStaticPaths() {
+  const files = import.meta.glob('../content/pages/*.json', { eager: true }) as Record<string, { default: any }>;
+  return Object.entries(files).map(([file, mod]) => {
+    const name = file.split('/').pop()!.replace(/\.json$/, '');
+    const isHome = name === 'index';
+    return {
+      params: { slug: isHome ? undefined : name },
+      props: { page: mod.default, path: isHome ? '/' : `/${name}` },
+    };
+  });
+}
+
+const { page, path } = Astro.props;
+const html = renderSections(page.sections, { img: (p: string) => p, keys: false });
+---
+<Base
+  title={page.seo?.title || page.title}
+  description={page.seo?.description || ''}
+  currentPath={path}
+>
+  <Fragment set:html={html} />
+</Base>

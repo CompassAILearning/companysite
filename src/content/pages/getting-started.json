@@ -1,0 +1,103 @@
+{
+  "title": "Getting Started",
+  "seo": {
+    "title": "Getting Started — CourseCadence",
+    "description": "Set up CourseCadence in three steps: upload your syllabus, tell us how you study, and get your personalized plan."
+  },
+  "sections": [
+    {
+      "type": "pageBanner",
+      "eyebrow": "Getting Started",
+      "headline": "Your personalized study plan in three simple steps",
+      "lead": "Setting up CourseCadence takes about 10 minutes. Have your syllabi handy and we'll handle the rest."
+    },
+    {
+      "type": "detailedSteps",
+      "background": "gray",
+      "items": [
+        {
+          "label": "Step 1:",
+          "title": "Upload your class syllabus",
+          "body": "Upload a PDF, Word document or photo of each syllabus. CourseCadence pulls out every assignment, reading, quiz and exam date automatically.",
+          "bullets": [
+            "Supports PDF, DOCX and image uploads",
+            "Review and edit anything we extract before it goes on your calendar",
+            "Add courses at any point in the term"
+          ],
+          "icon": "upload"
+        },
+        {
+          "label": "Step 2:",
+          "title": "Answer questions about your schedule and learning style",
+          "body": "Tell us how you study best and what else is on your plate. A short questionnaire covers things like:",
+          "bullets": [
+            "When you focus best: mornings, afternoons or late nights",
+            "How long you like to study in one sitting",
+            "Jobs, sports, clubs and other commitments to plan around"
+          ],
+          "icon": "questions"
+        },
+        {
+          "label": "Step 3:",
+          "title": "Get your personalized study plan",
+          "body": "CourseCadence builds a week-by-week plan with study blocks, reading time and exam prep, and sends push notifications so nothing slips.",
+          "bullets": [
+            "Plans adjust automatically when you miss a session or add a deadline",
+            "Sync with Google Calendar, Outlook or Apple Calendar",
+            "Check in daily to see exactly what's next"
+          ],
+          "icon": "plan"
+        }
+      ]
+    },
+    {
+      "type": "textImage",
+      "background": "white",
+      "heading": "What you'll need",
+      "checklist": [
+        "A syllabus for each course you're taking this term",
+        "Your weekly class schedule",
+        "Rough hours for work, practice or other commitments",
+        "A campus or personal email to create your account"
+      ],
+      "image": "/assets/img/hero.png",
+      "imageAlt": "A student raising her hand in class",
+      "imageSide": "right"
+    },
+    {
+      "type": "faq",
+      "background": "gray",
+      "heading": "Frequently asked questions",
+      "items": [
+        {
+          "question": "How much does CourseCadence cost?",
+          "answer": "Every account starts with a free 30-day trial. Pricing details for after the trial will be announced soon."
+        },
+        {
+          "question": "Do I need a campus email to sign up?",
+          "answer": "No. You can sign up with a campus or personal email address."
+        },
+        {
+          "question": "What if my syllabus changes mid-semester?",
+          "answer": "Upload the new version or edit dates directly. Your plan rebalances automatically around the changes."
+        },
+        {
+          "question": "Does CourseCadence work for graduate students?",
+          "answer": "Yes. Anyone managing coursework and deadlines can use CourseCadence, from first-year undergrads to grad students."
+        },
+        {
+          "question": "Is my data private?",
+          "answer": "Yes. We only use your information to build your plan, and we never sell student data. See our Privacy Policy and Campus Data Security pages for details."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "background": "gray",
+      "heading": "Start your 30-day free trial",
+      "text": "Get your personalized study plan in minutes.",
+      "buttonLabel": "Start Free 30-Day Trial",
+      "buttonUrl": "/#signup"
+    }
+  ]
+}

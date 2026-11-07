@@ -26,273 +26,389 @@ site_url: https://companysite-zeta.vercel.app
 media_folder: public/assets/img
 public_folder: /assets/img
 
-# Reusable field definitions
-_seo: &seo
-  name: seo
-  label: Search & sharing
-  widget: object
-  collapsed: true
-  fields:
-    - { name: title, label: Browser tab / search title }
-    - { name: description, label: Search description, widget: text }
+# ------------------------------------------------------------------
+# Reusable field definitions (YAML anchors)
+# ------------------------------------------------------------------
+_defs:
+  background: &background
+    name: background
+    label: Background
+    widget: select
+    default: white
+    options:
+      - { label: White, value: white }
+      - { label: Light gray, value: gray }
+      - { label: Brand tint, value: tint }
+  anchor: &anchor
+    name: anchor
+    label: Link target (optional)
+    required: false
+    hint: "Lets links jump here. E.g. 'pricing' makes /your-page#pricing scroll to this section."
+  heading: &heading { name: heading, label: Heading, required: false }
+  intro: &intro { name: intro, label: Intro text, required: false, widget: text }
+  card_color: &card_color
+    name: color
+    label: Card color
+    widget: select
+    default: blue
+    options:
+      - { label: Blue, value: blue }
+      - { label: Green, value: green }
+      - { label: Amber, value: amber }
+  icon: &icon
+    name: icon
+    label: Icon
+    widget: select
+    default: star
+    options:
+      - { label: Upload document, value: upload }
+      - { label: Calendar with question, value: questions }
+      - { label: Checklist plan, value: plan }
+      - { label: Calendar, value: calendar }
+      - { label: Notification bell, value: bell }
+      - { label: Star, value: star }
+      - { label: Phone, value: phone }
+      - { label: Android phone, value: android }
+      - { label: Laptop / web, value: web }
+  link_list: &link_list
+    widget: list
+    summary: "{{fields.label}} → {{fields.url}}"
+    fields:
+      - { name: label, label: Text }
+      - { name: url, label: Link, hint: "A page like /about, a section like /#signup, or a full https:// address" }
 
-_page_hero: &page_hero
-  name: hero
-  label: Top banner
-  widget: object
-  fields:
-    - { name: eyebrow, label: Small label above headline, required: false }
-    - { name: headline, label: Headline }
-    - { name: lead, label: Intro text, widget: text }
+# ------------------------------------------------------------------
+# Section types editors can add to any page
+# ------------------------------------------------------------------
+_sections: &sections
+  name: sections
+  label: Page sections
+  widget: list
+  hint: "Add, remove and drag sections to build the page."
+  types:
+    - name: hero
+      label: Hero (headline + image)
+      widget: object
+      summary: "Hero: {{fields.headline}}"
+      fields:
+        - { name: headline, label: Headline }
+        - { name: lead, label: Intro text, widget: text, required: false }
+        - { name: ctaLabel, label: Button text, required: false }
+        - { name: ctaUrl, label: Button link, required: false, default: "#signup" }
+        - { name: image, label: Image, widget: image, required: false }
+        - { name: imageAlt, label: Image description (for screen readers), required: false }
+        - { name: showVideoControls, label: Show video play button on image, widget: boolean, default: false }
+        - *anchor
 
-_card_color: &card_color
-  name: color
-  label: Card color
-  widget: select
-  options:
-    - { label: Blue, value: blue }
-    - { label: Green, value: green }
-    - { label: Amber, value: amber }
+    - name: pageBanner
+      label: Page banner (title at top of page)
+      widget: object
+      summary: "Banner: {{fields.headline}}"
+      fields:
+        - { name: eyebrow, label: Small label above headline, required: false }
+        - { name: headline, label: Headline }
+        - { name: lead, label: Intro text, widget: text, required: false }
+        - *anchor
 
-_icon: &icon
-  name: icon
-  label: Icon
-  widget: select
-  options:
-    - { label: Upload document, value: upload }
-    - { label: Calendar with question, value: questions }
-    - { label: Checklist plan, value: plan }
-    - { label: Phone, value: phone }
-    - { label: Android phone, value: android }
-    - { label: Laptop / web, value: web }
+    - name: featureCards
+      label: Feature cards
+      widget: object
+      summary: "Cards: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: style
+          label: Style
+          widget: select
+          default: panel
+          options:
+            - { label: Cards inside a rounded panel, value: panel }
+            - { label: Plain cards, value: plain }
+        - name: cards
+          label: Cards
+          widget: list
+          summary: "{{fields.title}}"
+          fields:
+            - { name: title, label: Title }
+            - { name: body, label: Text, widget: text }
+            - *card_color
+        - *background
+        - *anchor
 
-_cta: &cta
-  name: cta
-  label: Bottom call-to-action
-  widget: object
-  fields:
-    - { name: heading, label: Heading }
-    - { name: text, label: Text, widget: text }
-    - { name: buttonLabel, label: Button text }
-    - { name: buttonUrl, label: Button link, hint: "Use /#signup for the home page sign-up form" }
+    - name: steps
+      label: Steps (icons in a row)
+      widget: object
+      summary: "Steps: {{fields.heading}}"
+      fields:
+        - *heading
+        - name: items
+          label: Steps
+          widget: list
+          summary: "{{fields.label}} {{fields.text}}"
+          fields:
+            - { name: label, label: "Label (e.g. Step 1:)" }
+            - { name: text, label: Text }
+            - *icon
+        - *background
+        - *anchor
+
+    - name: detailedSteps
+      label: Detailed steps (with bullet points)
+      widget: object
+      summary: "Detailed steps: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: items
+          label: Steps
+          widget: list
+          summary: "{{fields.label}} {{fields.title}}"
+          fields:
+            - { name: label, label: "Label (e.g. Step 1:)" }
+            - { name: title, label: Title }
+            - { name: body, label: Text, widget: text, required: false }
+            - { name: bullets, label: Bullet points, widget: list, required: false, field: { name: bullet, label: Bullet } }
+            - *icon
+        - *background
+        - *anchor
+
+    - name: textImage
+      label: Text with image
+      widget: object
+      summary: "Text + image: {{fields.heading}}"
+      fields:
+        - *heading
+        - { name: body, label: Text, widget: text, required: false, hint: "Leave a blank line between paragraphs" }
+        - { name: checklist, label: Checklist (optional), widget: list, required: false, field: { name: item, label: Item } }
+        - { name: image, label: Image, widget: image, required: false }
+        - { name: imageAlt, label: Image description (for screen readers), required: false }
+        - name: imageSide
+          label: Image side
+          widget: select
+          default: right
+          options:
+            - { label: Right, value: right }
+            - { label: Left, value: left }
+        - *background
+        - *anchor
+
+    - name: quotes
+      label: Quotes / testimonials
+      widget: object
+      summary: "Quotes: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: quotes
+          label: Quotes
+          widget: list
+          summary: "{{fields.attribution}}"
+          fields:
+            - { name: quote, label: Quote, widget: text }
+            - { name: attribution, label: "Who said it (e.g. Biology, Junior)" }
+        - *background
+        - *anchor
+
+    - name: team
+      label: Team
+      widget: object
+      summary: "Team: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: members
+          label: Members
+          widget: list
+          summary: "{{fields.name}} — {{fields.role}}"
+          fields:
+            - { name: name, label: Name }
+            - { name: role, label: Role }
+            - { name: photo, label: Photo (square works best), widget: image, required: false }
+        - *background
+        - *anchor
+
+    - name: faq
+      label: FAQ
+      widget: object
+      summary: "FAQ: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: items
+          label: Questions
+          widget: list
+          summary: "{{fields.question}}"
+          fields:
+            - { name: question, label: Question }
+            - { name: answer, label: Answer, widget: text }
+        - *background
+        - *anchor
+
+    - name: table
+      label: Table (3 columns)
+      widget: object
+      summary: "Table: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: columns
+          label: Column headings
+          widget: object
+          fields:
+            - { name: col1, label: Column 1 }
+            - { name: col2, label: Column 2 }
+            - { name: col3, label: Column 3 }
+        - name: rows
+          label: Rows
+          widget: list
+          summary: "{{fields.col1}}"
+          fields:
+            - { name: col1, label: Column 1 }
+            - { name: col2, label: Column 2, required: false }
+            - { name: col3, label: Column 3, required: false }
+        - *background
+        - *anchor
+
+    - name: platforms
+      label: Download / platform cards
+      widget: object
+      summary: "Platforms: {{fields.heading}}"
+      fields:
+        - *heading
+        - *intro
+        - name: items
+          label: Platforms
+          widget: list
+          summary: "{{fields.name}}"
+          fields:
+            - { name: name, label: Name }
+            - { name: description, label: Description, widget: text }
+            - { name: buttonLabel, label: Button text }
+            - { name: url, label: Download link, required: false, hint: "The button stays disabled until a link is set and Coming soon is off" }
+            - { name: comingSoon, label: Coming soon, widget: boolean, default: true }
+            - *icon
+            - name: style
+              label: Button style
+              widget: select
+              default: primary
+              options:
+                - { label: Solid, value: primary }
+                - { label: Outline, value: outline }
+        - *background
+        - *anchor
+
+    - name: signup
+      label: Sign-up form (free trial)
+      widget: object
+      summary: "Sign-up: {{fields.heading}}"
+      fields:
+        - { name: heading, label: Heading }
+        - { name: checklist, label: Checklist, widget: list, field: { name: item, label: Item, widget: text } }
+        - { name: tagline, label: Tagline, required: false }
+        - { name: buttonLabel, label: Button text, default: Start Free 30-Day Trial }
+        - { name: successMessage, label: Message shown after signing up, default: "Thanks! Check your inbox to get started." }
+        - { name: anchor, label: Link target, default: signup, hint: "Buttons linking to #signup jump here. Use only one sign-up form per page." }
+
+    - name: cta
+      label: Call-to-action band
+      widget: object
+      summary: "CTA: {{fields.heading}}"
+      fields:
+        - { name: heading, label: Heading }
+        - { name: text, label: Text, widget: text, required: false }
+        - { name: buttonLabel, label: Button text, required: false }
+        - { name: buttonUrl, label: Button link, required: false, default: "/#signup" }
+        - *background
+        - *anchor
 
 collections:
+  # ---------------- Pages ----------------
   - name: pages
     label: Pages
+    label_singular: Page
+    description: "Every page on the site. index is the home page. New pages get their address from the title (e.g. 'Pricing' → /pricing). Add new pages to the header or footer under Site settings."
+    folder: src/content/pages
+    format: json
+    create: true
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: Page name, hint: "Used for the page address when the page is first created" }
+      - name: seo
+        label: Search & sharing
+        widget: object
+        collapsed: true
+        fields:
+          - { name: title, label: Browser tab / search title }
+          - { name: description, label: Search description, widget: text, required: false }
+      - *sections
+
+  # ---------------- Site settings ----------------
+  - name: settings
+    label: Site settings
     format: json
     files:
-      # ---------------- Home ----------------
-      - name: home
-        label: Home
-        file: src/content/home.json
+      - name: theme
+        label: Theme
+        file: src/content/settings/theme.json
         fields:
-          - *seo
-          - name: hero
-            label: Hero
-            widget: object
-            fields:
-              - { name: headline, label: Headline }
-              - { name: lead, label: Intro text, widget: text }
-              - { name: ctaLabel, label: Button text }
-              - { name: image, label: Image, widget: image }
-              - { name: imageAlt, label: Image description (for screen readers) }
-          - name: features
-            label: Feature cards
-            widget: object
-            fields:
-              - { name: heading, label: Section heading }
-              - name: cards
-                label: Cards
-                widget: list
-                summary: "{{fields.title}}"
-                fields:
-                  - { name: title, label: Title }
-                  - { name: body, label: Text, widget: text }
-                  - *card_color
-          - name: steps
-            label: How it works
-            widget: object
-            fields:
-              - { name: heading, label: Section heading }
-              - name: items
-                label: Steps
-                widget: list
-                summary: "{{fields.label}} {{fields.text}}"
-                fields:
-                  - { name: label, label: "Label (e.g. Step 1:)" }
-                  - { name: text, label: Text }
-                  - *icon
-          - name: signup
-            label: Sign-up section
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: checklist, label: Checklist, widget: list, field: { name: item, label: Item, widget: text } }
-              - { name: tagline, label: Tagline }
-              - { name: buttonLabel, label: Button text }
-              - { name: successMessage, label: Message shown after signing up }
+          - name: palette
+            label: Color palette
+            widget: select
+            options:
+              - { label: CompassAI Blue, value: compass-blue }
+              - { label: Ocean Teal, value: ocean-teal }
+              - { label: Royal Purple, value: royal-purple }
+              - { label: Graphite, value: graphite }
+          - name: font
+            label: Font
+            widget: select
+            options:
+              - { label: Figtree, value: figtree }
+              - { label: Inter, value: inter }
+              - { label: Poppins, value: poppins }
+              - { label: Nunito Sans, value: nunito-sans }
 
-      # ---------------- About ----------------
-      - name: about
-        label: About
-        file: src/content/about.json
+      - name: header
+        label: Header
+        file: src/content/settings/header.json
         fields:
-          - *seo
-          - *page_hero
-          - name: mission
-            label: Mission
+          - { name: logo, label: Logo, widget: image }
+          - { name: logoAlt, label: Logo description (for screen readers) }
+          - name: layout
+            label: Layout
+            widget: select
+            options:
+              - { label: Logo left, links right, value: split }
+              - { label: Logo centered above links, value: centered }
+          - { name: links, label: Navigation links, <<: *link_list }
+          - name: cta
+            label: Header button
             widget: object
             fields:
-              - { name: heading, label: Heading }
-              - { name: body, label: Text, widget: text, hint: "Leave a blank line between paragraphs" }
-              - { name: image, label: Image, widget: image }
-              - { name: imageAlt, label: Image description (for screen readers) }
-          - name: values
-            label: Values
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: intro, label: Intro, required: false }
-              - name: cards
-                label: Cards
-                widget: list
-                summary: "{{fields.title}}"
-                fields:
-                  - { name: title, label: Title }
-                  - { name: body, label: Text, widget: text }
-                  - *card_color
-          - name: stories
-            label: Student quotes
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: intro, label: Intro, required: false }
-              - name: quotes
-                label: Quotes
-                widget: list
-                summary: "{{fields.attribution}}"
-                fields:
-                  - { name: quote, label: Quote, widget: text }
-                  - { name: attribution, label: "Who said it (e.g. Biology, Junior)" }
-          - name: team
-            label: Team
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: intro, label: Intro, required: false }
-              - name: members
-                label: Members
-                widget: list
-                summary: "{{fields.name}} — {{fields.role}}"
-                fields:
-                  - { name: name, label: Name }
-                  - { name: role, label: Role }
-                  - { name: photo, label: Photo (square works best), widget: image, required: false }
-          - *cta
+              - { name: show, label: Show a button in the header, widget: boolean, default: false }
+              - { name: label, label: Button text, required: false }
+              - { name: url, label: Button link, required: false }
 
-      # ---------------- Getting Started ----------------
-      - name: getting-started
-        label: Getting Started
-        file: src/content/getting-started.json
-        fields:
-          - *seo
-          - *page_hero
-          - name: steps
-            label: Steps
-            widget: list
-            summary: "{{fields.label}} {{fields.title}}"
-            fields:
-              - { name: label, label: "Label (e.g. Step 1:)" }
-              - { name: title, label: Title }
-              - { name: body, label: Text, widget: text }
-              - { name: bullets, label: Bullet points, widget: list, required: false, field: { name: bullet, label: Bullet } }
-              - *icon
-          - name: needs
-            label: What you'll need
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: items, label: Checklist, widget: list, field: { name: item, label: Item } }
-              - { name: image, label: Image, widget: image }
-              - { name: imageAlt, label: Image description (for screen readers) }
-          - name: faq
-            label: FAQ
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - name: items
-                label: Questions
-                widget: list
-                summary: "{{fields.question}}"
-                fields:
-                  - { name: question, label: Question }
-                  - { name: answer, label: Answer, widget: text }
-          - *cta
-
-      # ---------------- Download ----------------
-      - name: download
-        label: Download
-        file: src/content/download.json
-        fields:
-          - *seo
-          - *page_hero
-          - name: platforms
-            label: Platforms
-            widget: list
-            summary: "{{fields.name}}"
-            fields:
-              - { name: name, label: Name }
-              - { name: description, label: Description, widget: text }
-              - { name: buttonLabel, label: Button text }
-              - { name: url, label: Download link, required: false, hint: "The button stays disabled until a link is set and Coming soon is off" }
-              - { name: comingSoon, label: Coming soon, widget: boolean, default: true }
-              - *icon
-              - name: style
-                label: Button style
-                widget: select
-                options:
-                  - { label: Solid blue, value: primary }
-                  - { label: Outline, value: outline }
-          - name: requirements
-            label: System requirements
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: intro, label: Intro, required: false }
-              - name: rows
-                label: Rows
-                widget: list
-                summary: "{{fields.platform}}"
-                fields:
-                  - { name: platform, label: Platform }
-                  - { name: minimum, label: Minimum version }
-                  - { name: notes, label: Notes, required: false }
-          - name: sync
-            label: Sync section
-            widget: object
-            fields:
-              - { name: heading, label: Heading }
-              - { name: items, label: Checklist, widget: list, field: { name: item, label: Item } }
-              - { name: image, label: Image, widget: image }
-              - { name: imageAlt, label: Image description (for screen readers) }
-          - *cta
-
-      # ---------------- Footer ----------------
-      - name: site
+      - name: footer
         label: Footer
-        file: src/content/site.json
+        file: src/content/settings/footer.json
         fields:
-          - { name: footerTagline, label: Footer tagline }
-          - name: footerColumns
+          - { name: logo, label: Logo, widget: image }
+          - { name: logoAlt, label: Logo description (for screen readers) }
+          - name: layout
+            label: Layout
+            widget: select
+            options:
+              - { label: Logo left, link columns right, value: columns }
+              - { label: Simple centered, value: simple }
+          - { name: tagline, label: Tagline, required: false }
+          - name: columns
             label: Link columns
             widget: list
             summary: "{{fields.heading}}"
+            hint: "In the Simple layout, links from all columns are shown in one row."
             fields:
               - { name: heading, label: Heading }
-              - name: links
-                label: Links
-                widget: list
-                summary: "{{fields.label}}"
-                fields:
-                  - { name: label, label: Text }
-                  - { name: url, label: Link }
+              - { name: links, label: Links, <<: *link_list }
