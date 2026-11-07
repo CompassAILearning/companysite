@@ -1,0 +1,76 @@
+---
+import site from '../content/site.json';
+
+interface Props {
+  title: string;
+  description: string;
+  current: 'home' | 'about' | 'getting-started' | 'download';
+}
+const { title, description, current } = Astro.props;
+
+const nav = [
+  { key: 'home', label: 'Home', href: '/' },
+  { key: 'about', label: 'About', href: '/about' },
+  { key: 'getting-started', label: 'Getting Started', href: '/getting-started' },
+  { key: 'download', label: 'Download', href: '/download' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="CompassAI home">
+        <img src="/assets/img/logo.png" alt="CompassAI" width="300" height="60">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class={item.key === current ? 'active' : undefined}
+            aria-current={item.key === current ? 'page' : undefined}
+          >{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="/assets/img/logo-footer.png" alt="CompassAI" width="180" height="38">
+        <p>{site.footerTagline}</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        {site.footerColumns.map((col) => (
+          <div>
+            <h4>{col.heading}</h4>
+            {col.links.map((link) => <a href={link.url}>{link.label}</a>)}
+          </div>
+        ))}
+      </nav>
+    </div>
+  </footer>
+
+  <script is:inline src="/js/main.js"></script>
+</body>
+</html>

@@ -427,3 +427,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Astro / Vercel
+dist/
+.astro/
+.vercel/

@@ -1,0 +1,29 @@
+{
+  "footerTagline": "CourseCadence is a product of CompassAI.",
+  "footerColumns": [
+    {
+      "heading": "Product",
+      "links": [
+        { "label": "Features", "url": "/#features" },
+        { "label": "How it Works", "url": "/#how-it-works" },
+        { "label": "Download", "url": "/download" }
+      ]
+    },
+    {
+      "heading": "Student & Community",
+      "links": [
+        { "label": "Student Stories", "url": "/about#stories" },
+        { "label": "Student Community", "url": "#" },
+        { "label": "Getting Started", "url": "/getting-started" }
+      ]
+    },
+    {
+      "heading": "Legal & Trust",
+      "links": [
+        { "label": "Privacy Policy", "url": "#" },
+        { "label": "Terms of Service", "url": "#" },
+        { "label": "Campus Data Security", "url": "#" }
+      ]
+    }
+  ]
+}

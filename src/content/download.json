@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "Download CourseCadence",
+    "description": "Get CourseCadence on iPhone, Android and the web."
+  },
+  "hero": {
+    "eyebrow": "Download",
+    "headline": "Take CourseCadence everywhere you go",
+    "lead": "Get your study plan, reminders and check-ins on your phone, tablet or laptop. Your plan syncs across every device."
+  },
+  "platforms": [
+    {
+      "name": "iPhone & iPad",
+      "description": "Push notifications, home-screen widgets and your daily plan at a glance.",
+      "buttonLabel": "Download for iOS",
+      "url": "",
+      "comingSoon": true,
+      "icon": "phone",
+      "style": "primary"
+    },
+    {
+      "name": "Android",
+      "description": "Everything you need to stay on track, built for Android phones and tablets.",
+      "buttonLabel": "Download for Android",
+      "url": "",
+      "comingSoon": true,
+      "icon": "android",
+      "style": "primary"
+    },
+    {
+      "name": "Web app",
+      "description": "Plan your week on a bigger screen. Works in any modern browser, no install required.",
+      "buttonLabel": "Open web app",
+      "url": "",
+      "comingSoon": true,
+      "icon": "web",
+      "style": "outline"
+    }
+  ],
+  "requirements": {
+    "heading": "System requirements",
+    "intro": "Placeholder requirements. Confirm these with engineering before launch.",
+    "rows": [
+      { "platform": "iOS / iPadOS", "minimum": "iOS 16 or later", "notes": "Widgets require iOS 17" },
+      { "platform": "Android", "minimum": "Android 10 or later", "notes": "Phones and tablets" },
+      { "platform": "Web", "minimum": "Latest Chrome, Edge, Safari or Firefox", "notes": "Desktop and laptop" }
+    ]
+  },
+  "sync": {
+    "heading": "One plan, every device",
+    "items": [
+      "Changes sync instantly between your phone and laptop",
+      "Reminders arrive wherever you're signed in",
+      "Connect Google Calendar, Outlook or Apple Calendar",
+      "Pick up right where you left off"
+    ],
+    "image": "/assets/img/hero.png",
+    "imageAlt": "Students studying in a classroom"
+  },
+  "cta": {
+    "heading": "Start before the apps launch",
+    "text": "Sign up for your 30-day free trial now, and we'll email you as soon as CourseCadence is ready to download.",
+    "buttonLabel": "Start Free 30-Day Trial",
+    "buttonUrl": "/#signup"
+  }
+}
