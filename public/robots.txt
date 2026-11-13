@@ -1,2 +1,4 @@
+# Temporary: keep crawlers off the whole site until launch.
+# At launch, replace "Disallow: /" with "Disallow: /admin/".
 User-agent: *
-Disallow: /admin/
+Disallow: /
