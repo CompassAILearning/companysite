@@ -1,15 +1,55 @@
 {
-  "title": "Getting Started",
+  "title": "CourseCadence",
   "seo": {
-    "title": "Getting Started — CourseCadence",
-    "description": "Set up CourseCadence in three steps: upload your syllabus, tell us how you study, and get your personalized plan."
+    "title": "CourseCadence — Personalized study plans for college",
+    "description": "CourseCadence turns your syllabi into one personalized study plan that adapts when life happens. See what it does and get set up in three steps."
   },
   "sections": [
     {
       "type": "pageBanner",
-      "eyebrow": "Getting Started",
-      "headline": "Your personalized study plan in three simple steps",
-      "lead": "Setting up CourseCadence takes about 10 minutes. Have your syllabi handy and we'll handle the rest."
+      "eyebrow": "CourseCadence",
+      "headline": "Every syllabus, one plan that keeps up with you",
+      "lead": "CourseCadence reads your syllabi, learns how you study and builds a personalized plan for the whole term, with study blocks, reading time and exam prep scheduled around the rest of your life."
+    },
+    {
+      "type": "featureCards",
+      "anchor": "features",
+      "style": "plain",
+      "background": "white",
+      "heading": "What CourseCadence does",
+      "intro": "Everything you need to stay on top of coursework, in one app.",
+      "cards": [
+        {
+          "title": "Reads your syllabi for you",
+          "body": "Upload a PDF, Word document or photo of each syllabus. CourseCadence pulls out every assignment, reading, quiz and exam date so you don’t have to copy them by hand.",
+          "color": "blue"
+        },
+        {
+          "title": "Plans around how you study",
+          "body": "Tell it when you focus best and how long you like to work in one sitting. Your study blocks, reading time and exam prep are scheduled to match.",
+          "color": "green"
+        },
+        {
+          "title": "Makes room for the rest of life",
+          "body": "Add jobs, sports, clubs and other commitments. CourseCadence plans around them so your workload stays manageable.",
+          "color": "amber"
+        },
+        {
+          "title": "Adapts when plans change",
+          "body": "Missed a session or got a new deadline? Your plan rebalances the rest of the week automatically instead of leaving you behind.",
+          "color": "blue"
+        },
+        {
+          "title": "Keeps you on track",
+          "body": "Push notifications remind you of study sessions and deadlines, check in on how it’s going and cheer you on along the way.",
+          "color": "green"
+        },
+        {
+          "title": "Works with your calendar",
+          "body": "Sync your plan with Google Calendar, Outlook or Apple Calendar so everything lives in one place.",
+          "color": "amber"
+        }
+      ]
     },
     {
       "type": "detailedSteps",
@@ -48,7 +88,10 @@
           ],
           "icon": "plan"
         }
-      ]
+      ],
+      "anchor": "getting-started",
+      "heading": "Get started in three steps",
+      "intro": "Setting up CourseCadence takes about 10 minutes. Have your syllabi handy and we’ll handle the rest."
     },
     {
       "type": "textImage",
