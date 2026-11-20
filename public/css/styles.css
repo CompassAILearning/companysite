@@ -247,7 +247,7 @@ h1, h2, h3, h4 { margin: 0; line-height: 1.15; }
 }
 
 /* ==========================================================
-   Inner pages (About, Getting Started, Download)
+   Inner pages (About, CourseCadence, Download)
    ========================================================== */
 .page-hero {
   background: linear-gradient(180deg, var(--blue-soft) 0%, var(--blue-softer) 55%, var(--white) 100%);

@@ -100,7 +100,7 @@ The live site and the CMS preview both use `sections.mjs`, so there is nothing e
 
 - Sign-up form validates in the browser only. Wire it to a real endpoint in `public/js/main.js`.
 - Hero play button is a placeholder (no video yet).
-- About, Getting Started and Download hold **filler copy**. Team names and photos, app store links,
+- About, CourseCadence and Download hold **filler copy**. Team names and photos, app store links,
   pricing, calendar integrations and system requirements are placeholders. Confirm them before launch.
 - Footer legal links and Student Community point to `#`.
 - Logo and hero image are rasters taken from the concept PDF. Replace them with the original SVG
