@@ -37,10 +37,11 @@
           "name": "Web app",
           "description": "Plan your week on a bigger screen. Works in any modern browser, no install required.",
           "buttonLabel": "Open web app",
-          "url": "",
-          "comingSoon": true,
+          "url": "https://coursecadence.com",
+          "comingSoon": false,
           "icon": "web",
-          "style": "outline"
+          "style": "outline",
+          "badge": "Beta"
         }
       ]
     },
@@ -57,12 +58,12 @@
       "rows": [
         {
           "col1": "iOS / iPadOS",
-          "col2": "iOS 16 or later",
-          "col3": "Widgets require iOS 17"
+          "col2": "iOS / iPadOS 16.4 or later",
+          "col3": "iPhone and iPad"
         },
         {
           "col1": "Android",
-          "col2": "Android 10 or later",
+          "col2": "Android 7.0 or later",
           "col3": "Phones and tablets"
         },
         {

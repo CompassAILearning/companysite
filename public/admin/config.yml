@@ -286,6 +286,7 @@ _sections: &sections
             - { name: buttonLabel, label: Button text }
             - { name: url, label: Download link, required: false, hint: "The button stays disabled until a link is set and Coming soon is off" }
             - { name: comingSoon, label: Coming soon, widget: boolean, default: true }
+            - { name: badge, label: Badge (e.g. Beta), widget: string, required: false, hint: "Small label above the name. Ignored while Coming soon is on." }
             - *icon
             - name: style
               label: Button style

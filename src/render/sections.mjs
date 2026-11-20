@@ -228,7 +228,8 @@ const SECTIONS = {
             const cls = `btn btn-${esc(p.style || 'primary')}${live ? '' : ' btn-disabled'}`;
             return `<div class="platform-card"${k(`items.${i}`)}>
               ${icon(p.icon)}
-              ${p.comingSoon ? `<span class="badge-soon"${k(`items.${i}.comingSoon`)}>Coming soon</span>` : ''}
+              ${p.comingSoon ? `<span class="badge-soon"${k(`items.${i}.comingSoon`)}>Coming soon</span>`
+                : p.badge ? `<span class="badge-soon"${k(`items.${i}.badge`)}>${esc(p.badge)}</span>` : ''}
               <h3${k(`items.${i}.name`)}>${esc(p.name)}</h3>
               <p${k(`items.${i}.description`)}>${esc(p.description)}</p>
               ${live ? `<a href="${esc(p.url)}" class="${cls}"${k(`items.${i}.buttonLabel`)}>${esc(p.buttonLabel)}</a>`
