@@ -61,6 +61,31 @@
       ]
     },
     {
+      "type": "featureCards",
+      "anchor": "our-mission",
+      "style": "plain",
+      "background": "gray",
+      "heading": "No student should have to figure out college alone",
+      "intro": "College asks you to manage more at once than ever: several courses, each with its own syllabus and deadlines, plus jobs, sports, family and a social life. Our mission at CompassAI is to give every student a calm, clear view of what’s next and a plan that adapts when life happens.",
+      "cards": [
+        {
+          "title": "Students first",
+          "body": "We build for your long-term success, not for screen time. A good day in CourseCadence is one where you open it, know what to do and get back to your life.",
+          "color": "blue"
+        },
+        {
+          "title": "Flexible, not rigid",
+          "body": "Plans should bend when life happens. Missed a session? CourseCadence reworks the rest of your week instead of making you feel behind.",
+          "color": "green"
+        },
+        {
+          "title": "Privacy by default",
+          "body": "Your schedule and coursework belong to you. We collect only what we need to build your plan and never sell student data.",
+          "color": "amber"
+        }
+      ]
+    },
+    {
       "type": "signup",
       "anchor": "signup",
       "heading": "Sign up for your 30-Day Free Trial",
